@@ -10,6 +10,6 @@ public interface CommentsRepository
         extends JpaRepository<Comments,Long>{
     //Add methods needed here
         //Performs a query on students by their userid
-        Optional<Comments> findCommentsByuserID(String userID);
+        //Optional<Comments> findCommentsByuserID(String userID);
 
 }

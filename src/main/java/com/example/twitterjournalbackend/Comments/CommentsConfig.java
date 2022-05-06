@@ -9,12 +9,12 @@ import java.time.Month;
 
 @Configuration
 public class CommentsConfig {
+
     @Bean
     CommandLineRunner commandlinerunner(CommentsRepository repository) {
         return args -> {
             //Add entries in the comments table by declaring an instance of comments class
             Comments isaidoun = new Comments(
-                    1L,
                     "Isaidoun",
                     "Sports",
                     "I do not like this sport very much",
@@ -25,9 +25,6 @@ public class CommentsConfig {
                     "234kjdfsjf",
                     "2343dsf",
                     "jfdslkf2"
-
-
-
             );
             repository.save(isaidoun);
 
