@@ -1,6 +1,8 @@
 package com.example.twitterjournalbackend.Comments;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.social.twitter.api.Trend;
+import org.springframework.social.twitter.api.Trends;
 import org.springframework.social.twitter.api.Tweet;
 import org.springframework.social.twitter.api.Twitter;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +24,13 @@ public class CommentsController {
     }
 
     @GetMapping(path = "/twitter")
-    public List<Tweet> getTweets(){
-        return twitter.searchOperations().search("#computer", 20).getTweets();
+    public List<Trend> getTrends(){
+        return twitter.searchOperations().getLocalTrends(4118).getTrends();
+    }
+
+    @GetMapping(path = "/twitter/{trend}")
+    public List<Tweet> getTweets(@PathVariable("trend") String trend){
+        return twitter.searchOperations().search(trend, 5).getTweets();
     }
 
     @GetMapping(path = "/comments/{userId}")
