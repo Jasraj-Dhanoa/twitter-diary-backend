@@ -2,7 +2,9 @@ package com.example.twitterjournalbackend.Comments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CommentsService {
@@ -15,8 +17,9 @@ public class CommentsService {
     }
 
     //retrieve comment from
-    public List<Comments> getComments(String Id) {
-        return commentsRepository.findAll();
+    public Optional<Comments> getComments(String Id) {
+//        return commentsRepository.findAll();
+        return commentsRepository.findCommentsByUserID(Id);
     }
 
     public void addNewComments(Comments comment) {

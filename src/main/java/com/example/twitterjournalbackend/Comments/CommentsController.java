@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class CommentsController {
@@ -15,7 +16,7 @@ public class CommentsController {
     }
 
     @GetMapping("/comments/{userId}")
-    public List<Comments> getComments(@PathVariable("userId") String userId){
+    public Optional<Comments> getComments(@PathVariable("userId") String userId){
         return commentsService.getComments(userId);
     }
 
