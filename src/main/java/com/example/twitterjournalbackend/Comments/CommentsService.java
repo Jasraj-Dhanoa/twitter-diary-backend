@@ -1,8 +1,10 @@
 package com.example.twitterjournalbackend.Comments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.swing.text.html.Option;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,12 +29,28 @@ public class CommentsService {
         this.commentsRepository.save(comment);
     }
 
-    public void deleteComments(Long ID) {
-        this.commentsRepository.deleteById(ID);
+    public void deleteComments(Long Id) {
+        //checks if commentID passed exists in database
+        Boolean commentByCommentId = commentsRepository.existsById(Id);
+        if (!commentByCommentId){
+            throw new IllegalArgumentException("comment with ID: " + Id + " does not exist");
+        }
+        this.commentsRepository.deleteById(Id);
     }
 
-//    public void updateComments(Long ID, Comments new_comment) {
-//        Comments comment = this.commentsRepository.find(ID);
-//        //update comment
-//    }
+    @Transactional
+    public void updateComment(Long Id, String newComment, LocalDate lastUpd) {
+
+        System.out.println(newComment);
+        Comments Comment = commentsRepository.findById(Id)
+                .orElseThrow(() -> new IllegalStateException(
+                        "comment with id: " + Id + "does not exist"
+                ));
+        //validation for date
+        if (lastUpd!=null && lastUpd.isAfter(Comment.getLast_Upd()))
+            Comment.setLast_Upd(lastUpd);
+        //validation for new Comment text
+        if(newComment != null && newComment.length() > 0 && newComment != Comment.getComment())
+            Comment.setComment(newComment);
+    }
 }
