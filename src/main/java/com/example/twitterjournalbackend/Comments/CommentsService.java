@@ -19,7 +19,7 @@ public class CommentsService {
     }
 
     //retrieve comment from
-    public Optional<Comments> getComments(String Id) {
+    public List<Comments> getComments(String Id) {
 //        return commentsRepository.findAll();
         return commentsRepository.findCommentsByUserID(Id);
     }
