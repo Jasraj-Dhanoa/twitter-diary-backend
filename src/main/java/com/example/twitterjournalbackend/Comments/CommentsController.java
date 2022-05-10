@@ -1,54 +1,37 @@
 package com.example.twitterjournalbackend.Comments;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.social.twitter.api.Trend;
-import org.springframework.social.twitter.api.Trends;
-import org.springframework.social.twitter.api.Tweet;
-import org.springframework.social.twitter.api.Twitter;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/comment")
 public class CommentsController {
     private final CommentsService commentsService;
-
-    @Autowired
-    private Twitter twitter;
 
     @Autowired
     public CommentsController(CommentsService commentsService) {
         this.commentsService = commentsService;
     }
 
-    @GetMapping(path = "/twitter")
-    public List<Trend> getTrends(){
-        return twitter.searchOperations().getLocalTrends(4118).getTrends();
-    }
-
-    @GetMapping(path = "/twitter/{trend}")
-    public List<Tweet> getTweets(@PathVariable("trend") String trend){
-        return twitter.searchOperations().search(trend, 5).getTweets();
-    }
-
-    @GetMapping(path = "/comments/{userId}")
+    @GetMapping(path = "{userId}")
     public Optional<Comments> getComments(@PathVariable("userId") String userId){
         return commentsService.getComments(userId);
     }
 
-    @PostMapping(path = "/comment")
+    @PostMapping()
     public void addNewComment(@RequestBody Comments comment) {
         commentsService.addNewComments(comment);
     }
 
-    @DeleteMapping(path = "/comment/{commentId}")
+    @DeleteMapping(path = "{commentId}")
     public void deleteComment(@PathVariable("commentId") Long commentId) {
         commentsService.deleteComments(commentId);
     }
 
-    @PutMapping(path = "comment/{commentId}")
+    @PutMapping(path = "{commentId}")
     public void updateComment(@PathVariable("commentId") Long commentId,
                               @RequestParam(required = false) String comment,
                               @RequestParam(required = false) LocalDate lastUpd) {
