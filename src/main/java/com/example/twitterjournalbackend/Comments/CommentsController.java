@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,7 +36,7 @@ public class CommentsController {
     @PutMapping(path = "{commentId}")
     public void updateComment(@PathVariable("commentId") Long commentId,
                               @RequestParam(required = false) String newComment,
-                              @RequestParam(required = false) LocalDate lastUpd) {
+                              @RequestParam(required = false) LocalDateTime lastUpd) {
         commentsService.updateComment(commentId, newComment, lastUpd);
     }
 }

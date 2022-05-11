@@ -3,10 +3,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.text.html.Option;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CommentsService {
@@ -39,7 +38,7 @@ public class CommentsService {
     }
 
     @Transactional
-    public void updateComment(Long Id, String newComment, LocalDate lastUpd) {
+    public void updateComment(Long Id, String newComment, LocalDateTime lastUpd) {
 
         System.out.println(newComment);
         Comments Comment = commentsRepository.findById(Id)
@@ -47,8 +46,8 @@ public class CommentsService {
                         "comment with id: " + Id + "does not exist"
                 ));
         //validation for date
-        if (lastUpd!=null && lastUpd.isAfter(Comment.getLast_Upd()))
-            Comment.setLast_Upd(lastUpd);
+        if (lastUpd!=null && lastUpd.isAfter(Comment.getLastUpd()))
+            Comment.setLastUpd(lastUpd);
         //validation for new Comment text
         if(newComment != null && newComment.length() > 0 && newComment != Comment.getComment())
             Comment.setComment(newComment);

@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
 
@@ -19,8 +20,8 @@ public class CommentsConfig {
                     "Isaidoun",
                     "Sports",
                     "I do not like this sport very much",
-                    LocalDate.of(2022, Month.MAY, 5),
-                    LocalDate.of(2022, Month.MAY, 5),
+                    LocalDateTime.of(2022, Month.MAY, 5,7,4,2),
+                    LocalDateTime.of(2022, Month.MAY, 5,7,4,2),
                     "sdkfljsdflk",
                     "34jfkdlsjf",
                     "234kjdfsjf",
@@ -32,8 +33,8 @@ public class CommentsConfig {
                     "Isaidoun",
                     "Food",
                     "this food tastes quite good!",
-                    LocalDate.of(2020, Month.JUNE, 5),
-                    LocalDate.of(2020, Month.JUNE, 5),
+                    LocalDateTime.of(2020, Month.JUNE, 5,6,56,4),
+                    LocalDateTime.of(2020, Month.JUNE, 5,6,56,4),
                     "sdkfljsdflk",
                     "34jfkdlsjf",
                     "234kjdfsjf",
@@ -45,8 +46,8 @@ public class CommentsConfig {
                     "Isaidoun",
                     "Weather",
                     "The sun is quite bright today! Although I like the winters, summer is simply much better!",
-                    LocalDate.of(2021, Month.JUNE, 11),
-                    LocalDate.of(2021, Month.JUNE, 11),
+                    LocalDateTime.of(2021, Month.JUNE, 11,21,2,3),
+                    LocalDateTime.of(2021, Month.JUNE, 11,21,2,3),
                     "sdkfljsdflk",
                     "34jfkdlsjf",
                     "234kjdfsjf",
