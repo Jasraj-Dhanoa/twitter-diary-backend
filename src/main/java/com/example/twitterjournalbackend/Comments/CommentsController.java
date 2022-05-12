@@ -35,8 +35,7 @@ public class CommentsController {
 
     @PutMapping(path = "{commentId}")
     public void updateComment(@PathVariable("commentId") Long commentId,
-                              @RequestParam(required = false) String newComment,
-                              @RequestParam(required = false) LocalDateTime lastUpd) {
-        commentsService.updateComment(commentId, newComment, lastUpd);
+                              @RequestBody(required = false) String newComment) {
+        commentsService.updateComment(commentId, newComment, LocalDateTime.now());
     }
 }

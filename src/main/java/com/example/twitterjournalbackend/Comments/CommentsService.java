@@ -39,7 +39,6 @@ public class CommentsService {
 
     @Transactional
     public void updateComment(Long Id, String newComment, LocalDateTime lastUpd) {
-
         System.out.println(newComment);
         Comments Comment = commentsRepository.findById(Id)
                 .orElseThrow(() -> new IllegalStateException(

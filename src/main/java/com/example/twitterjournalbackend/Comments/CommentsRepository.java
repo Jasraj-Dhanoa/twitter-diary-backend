@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface CommentsRepository
         extends JpaRepository<Comments,Long>{
 
-    @Query("SELECT s FROM Comments s WHERE s.userID = ?1")
+    @Query("SELECT s FROM Comments s WHERE s.userID = ?1 ORDER BY commentID")
     List<Comments> findCommentsByUserID(String UserID);
 
     //Add methods needed here
