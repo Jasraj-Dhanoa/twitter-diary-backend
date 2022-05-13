@@ -25,6 +25,8 @@ public class CommentsController {
 
     @PostMapping()
     public void addNewComment(@RequestBody Comments comment) {
+        comment.setDateCreate(LocalDateTime.now());
+        comment.setLastUpd(LocalDateTime.now());
         commentsService.addNewComments(comment);
     }
 
